@@ -6,6 +6,15 @@ spec:
   selector:
     app.kubernetes.io/name: polybase-vue
   ports:
-    # - protocol: TCP
-    #   port: 80
-    #   targetPort: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http
+    - protocol: TCP
+      port: 15672
+      targetPort: 15672
+      name: http-rabbitmq
+    - protocol: TCP
+      port: 5672
+      targetPort: 5672
+      name: rabbitmq-queue

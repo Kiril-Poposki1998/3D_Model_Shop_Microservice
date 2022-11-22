@@ -3,3 +3,11 @@ deployment:
 
 app:
   name: polybase-vue
+
+image:
+  name: localhost:5000/polybase-vue
+  version: latest
+
+rabbitmq:
+  user: user
+  password: password
