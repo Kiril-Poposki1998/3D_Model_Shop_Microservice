@@ -1,0 +1,3 @@
+[submodule "src/polybase-vue"]
+	path = src/polybase-vue
+	url = https://github.com/simonpankovski/polybase-vue.git

@@ -1,0 +1,5 @@
+deployment:
+  name: polybase-vue-deployment
+
+app:
+  name: polybase-vue
