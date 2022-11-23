@@ -20,7 +20,7 @@ spec:
         image: {{ .Values.image.name }}:{{ .Values.image.version }}
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
       - name: rabbitmq
         image: rabbitmq:management
         ports:
