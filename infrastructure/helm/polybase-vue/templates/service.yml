@@ -5,10 +5,9 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: polybase-vue
-  type: NodePort
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
       name: http
     - protocol: TCP
