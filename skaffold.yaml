@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+metadata:
+  name: -d-model-shop
+build:
+  artifacts:
+  - image: localhost:5000/polybase-vue
+    context: src/polybase-vue
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+    - name: polybase-vue
+      chartPath: infrastructure/helm/polybase-vue
+      valuesFiles:
+      - infrastructure/helm/polybase-vue/dev.yaml
+      version: 0.1.0
