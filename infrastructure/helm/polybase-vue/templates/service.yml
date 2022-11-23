@@ -4,7 +4,7 @@ metadata:
   name: polybase-vue
 spec:
   selector:
-    app.kubernetes.io/name: polybase-vue
+    app: polybase-vue
   ports:
     - protocol: TCP
       port: 80

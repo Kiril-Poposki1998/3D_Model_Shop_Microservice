@@ -32,11 +32,6 @@ docker network connect "kind" registry
 ## Setting up the code for the microservice (Windows)
 ```
 git submodule init
-cd .\src\
-git submodule add https://github.com/simonpankovski/polybase-vue.git
-```
-```
-cd ..
 git submodule update
 ```
 ## Deploy ingress controller
