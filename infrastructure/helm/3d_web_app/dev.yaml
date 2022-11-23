@@ -1,0 +1,13 @@
+deployment:
+  name: backend-deployment
+
+app:
+  name: backend
+
+image:
+  name: localhost:5000/backend
+  version: latest
+
+rabbitmq:
+  user: user
+  password: password
