@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
-  name: -d-model-shop
+  name: 3d-model-shop
 build:
   artifacts:
   - image: localhost:5000/backend
@@ -15,10 +15,10 @@ build:
 deploy:
   helm:
     releases:
-    - name: 3d_web_app
-      chartPath: infrastructure/helm/3d_web_app
+    - name: 3d-web-app
+      chartPath: infrastructure/helm/3d-web-app
       valuesFiles:
-      - infrastructure/helm/3d_web_app/dev.yaml
+      - infrastructure/helm/3d-web-app/dev.yaml
       version: 0.1.0
     - name: polybase-vue
       chartPath: infrastructure/helm/polybase-vue
