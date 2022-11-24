@@ -11,3 +11,11 @@ image:
 rabbitmq:
   user: user
   password: password
+
+service:
+  frontend:
+    name: polybase-vue
+    port: 80
+  backend:
+    name: polybase-be
+    port: 8080

@@ -10,27 +10,27 @@ spec:
         path: "/"
         backend:
           service:
-            name: polybase-vue
+            name: {{ .Values.service.frontend.name }}
             port:
-              number: 80
+              number: {{ .Values.service.frontend.port }}
       - pathType: Prefix
         path: "/api"
         backend:
           service:
-            name: polybase-vue
+            name: {{ .Values.service.backend.name }}
             port:
-              number: 80
+              number: {{ .Values.service.backend.port }}
       - pathType: Prefix
         path: "/models"
         backend:
           service:
-            name: polybase-vue
+            name: {{ .Values.service.backend.name }}
             port:
-              number: 80
+              number: {{ .Values.service.backend.port }}
       - pathType: Prefix
         path: "/textures"
         backend:
           service:
-            name: polybase-vue
+            name: {{ .Values.service.backend.name }}
             port:
-              number: 80
+              number: {{ .Values.service.backend.port }}
