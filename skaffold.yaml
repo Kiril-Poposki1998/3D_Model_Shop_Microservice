@@ -4,7 +4,7 @@ metadata:
   name: 3d-model-shop
 build:
   artifacts:
-  - image: localhost:5000/backend
+  - image: localhost:5000/polybase-be
     context: src/3D_Web_App
     docker:
       dockerfile: Dockerfile
@@ -15,10 +15,10 @@ build:
 deploy:
   helm:
     releases:
-    - name: 3d-web-app
-      chartPath: infrastructure/helm/3d-web-app
+    - name: polybase-be
+      chartPath: infrastructure/helm/polybase-be
       valuesFiles:
-      - infrastructure/helm/3d-web-app/dev.yaml
+      - infrastructure/helm/polybase-be/dev.yaml
       version: 0.1.0
     - name: polybase-vue
       chartPath: infrastructure/helm/polybase-vue

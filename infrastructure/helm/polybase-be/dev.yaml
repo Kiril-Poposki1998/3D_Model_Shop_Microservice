@@ -1,11 +1,11 @@
 deployment:
-  name: backend-deployment
+  name: polybase-be-deployment
 
 app:
-  name: backend
+  name: polybase-be
 
 image:
-  name: localhost:5000/backend
+  name: localhost:5000/polybase-be
   version: latest
 
 rabbitmq:
