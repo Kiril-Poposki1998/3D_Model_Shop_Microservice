@@ -35,6 +35,10 @@ docker network connect "kind" registry
 git submodule init
 git submodule update
 ```
+### Updating submodules
+```
+git pull --recurse-submodules
+```
 ## Deploy ingress controller
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
