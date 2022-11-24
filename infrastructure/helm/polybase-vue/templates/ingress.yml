@@ -13,3 +13,24 @@ spec:
             name: polybase-vue
             port:
               number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: polybase-vue
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/models"
+        backend:
+          service:
+            name: polybase-vue
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/textures"
+        backend:
+          service:
+            name: polybase-vue
+            port:
+              number: 80
