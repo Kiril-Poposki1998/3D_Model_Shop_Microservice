@@ -9,6 +9,7 @@ kubectx 0.9.4
 kubens 0.9.4
 k9s 0.26.3
 skaffold 2.0.2
+kubectl 1.25.3
 ```
 ## Installing prerequisites (Windows)
 The following command needs to be run as administrator in PowerShell.
