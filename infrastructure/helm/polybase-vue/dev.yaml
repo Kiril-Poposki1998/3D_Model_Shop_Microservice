@@ -6,6 +6,7 @@ app:
 
 image:
   name: localhost:5000/polybase-vue
+  port: 80
   version: latest
 
 rabbitmq:

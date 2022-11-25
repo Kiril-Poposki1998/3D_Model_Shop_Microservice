@@ -6,6 +6,7 @@ app:
 
 image:
   name: localhost:5000/polybase-be
+  port: 8080
   version: latest
 
 rabbitmq:
