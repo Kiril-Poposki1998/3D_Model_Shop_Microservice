@@ -28,7 +28,7 @@ spec:
             port:
               number: {{ .Values.service.backend.port }}
       - pathType: Prefix
-        path: "/textures"
+        path: "/texture"
         backend:
           service:
             name: {{ .Values.service.backend.name }}
