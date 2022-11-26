@@ -1,17 +1,17 @@
 deployment:
-  name: polybase-vue-deployment
+  name: polybase-fe
 
 app:
-  name: polybase-vue
+  name: polybase-fe
 
 image:
-  name: localhost:5000/polybase-vue
+  name: localhost:5000/polybase-fe
   port: 80
   version: latest
 
 service:
   frontend:
-    name: polybase-vue
+    name: polybase-fe
     port: 80
   backend:
     name: polybase-be

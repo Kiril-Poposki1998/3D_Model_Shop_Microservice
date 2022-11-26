@@ -1,5 +1,5 @@
 deployment:
-  name: polybase-be-deployment
+  name: polybase-be
 
 app:
   name: polybase-be
