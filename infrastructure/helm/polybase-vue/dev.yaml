@@ -9,10 +9,6 @@ image:
   port: 80
   version: latest
 
-rabbitmq:
-  user: user
-  password: password
-
 service:
   frontend:
     name: polybase-vue
