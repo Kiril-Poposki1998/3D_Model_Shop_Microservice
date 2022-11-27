@@ -1,20 +1,25 @@
 apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
-  name: 3d-model-shop
+  name: -d-model-shop
 build:
   artifacts:
   - image: localhost:5000/polybase-be
     context: src/3D_Web_App
     docker:
       dockerfile: Dockerfile
-  - image: localhost:5000/polybase-vue
+  - image: localhost:5000/polybase-fe
     context: src/polybase-vue
     docker:
       dockerfile: Dockerfile
 deploy:
   helm:
     releases:
+    - name: postgresql
+      chartPath: infrastructure/helm/postgresql
+      valuesFiles:
+      - infrastructure/helm/postgresql/dev.yaml
+      version: 0.1.0
     - name: polybase-be
       chartPath: infrastructure/helm/polybase-be
       valuesFiles:
@@ -24,9 +29,4 @@ deploy:
       chartPath: infrastructure/helm/polybase-vue
       valuesFiles:
       - infrastructure/helm/polybase-vue/dev.yaml
-      version: 0.1.0
-    - name: postgresql
-      chartPath: infrastructure/helm/postgresql
-      valuesFiles:
-      - infrastructure/helm/postgresql/dev.yaml
       version: 0.1.0
