@@ -48,3 +48,16 @@ kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.
 ```
 skaffold dev
 ```
+## Setting up and populating the database (DO THIS ONLY ONCE)
+```
+kubectl wait --namespace 3d-model-shop --for=condition=ready pod --selector=app.kubernetes.io/name=postgresql --timeout=120s
+kubectl cp .\infrastructure\database_export\data.sql.gz {polybase-be pod name}:/tmp/data.sql.gz
+kubectl exec -i deploy/polybase-be -- gunzip /tmp/data.sql.gz
+kubectl exec -i deploy/polybase-be -- php bin/console doctrine:migrations:migrate
+kubectl exec -it {{ polybase-be pod}} -- sh
+```
+Run the foollowing command inside the pod
+```
+psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
+```
+**NOTE: The password for the database is password**

@@ -1,3 +1,5 @@
-postgresql:
-  postgresqlUsename: postgresql
-  postgresqlPassword: password
+global:
+    postgresql:
+        auth:
+            postgresPassword: password
+            

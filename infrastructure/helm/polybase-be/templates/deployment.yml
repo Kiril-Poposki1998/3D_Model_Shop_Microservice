@@ -19,3 +19,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.image.port }}
+        env:
+          - name: DATABASE_URL
+            value: "postgres://postgres:password@postgresql.3d-model-shop.svc.cluster.local"
+          - name: URL
+            value: "http://localhost"

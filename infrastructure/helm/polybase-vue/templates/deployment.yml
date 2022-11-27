@@ -20,4 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.image.port }}
-          
+        env:
+          - name: VUE_APP_BACKEND_SERVICE_URL
+            value: "http://localhost/api/"

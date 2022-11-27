@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
-  name: -d-model-shop
+  name: 3d-model-shop
 build:
   artifacts:
   - image: localhost:5000/polybase-be
@@ -15,15 +15,15 @@ build:
 deploy:
   helm:
     releases:
-    - name: postgresql
-      chartPath: infrastructure/helm/postgresql
-      valuesFiles:
-      - infrastructure/helm/postgresql/dev.yaml
-      version: 0.1.0
     - name: polybase-be
       chartPath: infrastructure/helm/polybase-be
       valuesFiles:
       - infrastructure/helm/polybase-be/dev.yaml
+      version: 0.1.0
+    - name: postgresql
+      chartPath: infrastructure/helm/postgresql
+      valuesFiles:
+      - infrastructure/helm/postgresql/dev.yaml
       version: 0.1.0
     - name: polybase-vue
       chartPath: infrastructure/helm/polybase-vue
