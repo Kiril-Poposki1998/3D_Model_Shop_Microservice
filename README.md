@@ -54,7 +54,7 @@ kubectl wait --namespace 3d-model-shop --for=condition=ready pod --selector=app.
 kubectl cp .\infrastructure\database_export\data.sql.gz {polybase-be pod name}:/tmp/data.sql.gz
 kubectl exec -i deploy/polybase-be -- gunzip /tmp/data.sql.gz
 kubectl exec -i deploy/polybase-be -- php bin/console doctrine:migrations:migrate
-kubectl exec -it {polybase-be pod} -- sh
+kubectl exec -it {{ polybase-be pod}} -- sh
 ```
 Run the foollowing command inside the pod
 ```
