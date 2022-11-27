@@ -37,7 +37,7 @@ git submodule update
 ```
 ### Updating submodules
 ```
-git submodule update --force --recursive
+git submodule update --init --recursive --remote
 ```
 ## Deploy ingress controller
 ```
