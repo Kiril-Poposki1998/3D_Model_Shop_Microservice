@@ -29,6 +29,7 @@ kubectl create ns 3d-model-shop
 kubens 3d-model-shop
 kubectl apply -f .\infrastructure\registry\config_map.yml
 docker network connect "kind" registry
+helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 ## Setting up the code for the microservice (Windows)
 ```
