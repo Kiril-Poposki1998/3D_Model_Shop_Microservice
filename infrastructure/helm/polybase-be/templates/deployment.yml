@@ -23,4 +23,4 @@ spec:
           - name: DATABASE_URL
             value: "postgres://postgres:password@postgresql.3d-model-shop.svc.cluster.local"
           - name: URL
-            value: "http://localhost"
+            value: "http://localhost/"
