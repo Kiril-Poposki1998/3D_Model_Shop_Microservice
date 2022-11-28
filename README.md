@@ -63,3 +63,8 @@ apk add postgresql-client
 psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 ```
 **NOTE: The password for the database is password**
+## Deleting cluster
+```
+kind delete cluster --name=3d-model-shop
+docker rm -f registry
+```
