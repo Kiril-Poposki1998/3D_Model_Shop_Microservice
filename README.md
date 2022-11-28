@@ -50,11 +50,12 @@ skaffold dev
 ```
 ## Setting up and populating the database (DO THIS ONLY ONCE)
 ```
+kubectl get po | wsl -e grep 'polybase-be*' | wsl -e awk '{print $1}' | Tee-Object -Variable POD_NAME
 kubectl wait --namespace 3d-model-shop --for=condition=ready pod --selector=app.kubernetes.io/name=postgresql --timeout=120s
-kubectl cp .\infrastructure\database_export\data.sql.gz {polybase-be pod name}:/tmp/data.sql.gz
+kubectl cp .\infrastructure\database_export\data.sql.gz ${POD_NAME}:/tmp/data.sql.gz
 kubectl exec -i deploy/polybase-be -- gunzip /tmp/data.sql.gz
 kubectl exec -i deploy/polybase-be -- php bin/console doctrine:migrations:migrate
-kubectl exec -it {{ polybase-be pod}} -- sh
+kubectl exec -it ${POD_NAME} -- sh
 ```
 Run the foollowing command inside the pod
 ```
