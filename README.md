@@ -59,7 +59,6 @@ kubectl exec -it ${POD_NAME} -- sh
 ```
 Run the foollowing command inside the pod
 ```
-apk add postgresql-client
 psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 ```
 **NOTE: The password for the database is password**
