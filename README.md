@@ -10,6 +10,7 @@ kubens 0.9.4
 k9s 0.26.3
 skaffold 2.0.2
 kubectl 1.25.3
+istio 1.16.0
 ```
 ## Installing prerequisites (Windows)
 The following command needs to be run as administrator in PowerShell.
@@ -67,4 +68,26 @@ psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 ```
 kind delete cluster --name=3d-model-shop
 docker rm -f registry
+```
+## Add service mesh and monitoring
+```
+docker exec -it 3d-model-shop-control-plane bash
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.16.0
+export PATH=$PWD/bin:$PATH
+istioctl install --set profile=demo -y
+kubectl apply -f samples/addons
+cd /
+rm -rf istio-1.16.0
+exit
+```
+```
+kubectl label namespace 3d-model-shop istio-injection=enabled
+kubectl delete po --all
+```
+Add these to your C:\Windows\System32\drivers\etc\hosts file:
+```
+127.0.0.1 grafana.cluster
+127.0.0.1 kiali.cluster
+127.0.0.1 prometheus.cluster
 ```

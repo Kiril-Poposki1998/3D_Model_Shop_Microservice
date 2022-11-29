@@ -20,13 +20,18 @@ deploy:
       valuesFiles:
       - infrastructure/helm/polybase-be/dev.yaml
       version: 0.1.0
+    - name: polybase-vue
+      chartPath: infrastructure/helm/polybase-vue
+      valuesFiles:
+      - infrastructure/helm/polybase-vue/dev.yaml
+      version: 0.1.0
     - name: postgresql
       chartPath: infrastructure/helm/postgresql
       valuesFiles:
       - infrastructure/helm/postgresql/dev.yaml
       version: 0.1.0
-    - name: polybase-vue
-      chartPath: infrastructure/helm/polybase-vue
+    - name: helm-monitoring
+      chartPath: infrastructure/monitoring/helm_monitoring
       valuesFiles:
-      - infrastructure/helm/polybase-vue/dev.yaml
+      - infrastructure/monitoring/helm_monitoring/dev.yaml
       version: 0.1.0
