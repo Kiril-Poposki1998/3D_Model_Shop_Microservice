@@ -69,7 +69,7 @@ psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 kind delete cluster --name=3d-model-shop
 docker rm -f registry
 ```
-## Add service mesh and monitoring
+## Add service mesh and monitoring (Optional, recommended for DevOps or analysis)
 ```
 docker exec -it 3d-model-shop-control-plane bash
 curl -L https://istio.io/downloadIstio | sh -
