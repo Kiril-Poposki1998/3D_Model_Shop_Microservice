@@ -82,6 +82,7 @@ rm -rf istio-1.16.0
 exit
 ```
 ```
+helm install monitoring-ingress .\infrastructure\helm\helm_monitoring\
 kubectl label namespace 3d-model-shop istio-injection=enabled
 kubectl delete po --all
 ```

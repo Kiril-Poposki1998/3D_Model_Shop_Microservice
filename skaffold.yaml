@@ -30,8 +30,3 @@ deploy:
       valuesFiles:
       - infrastructure/helm/postgresql/dev.yaml
       version: 0.1.0
-    - name: helm-monitoring
-      chartPath: infrastructure/helm/helm_monitoring
-      valuesFiles:
-      - infrastructure/helm/helm_monitoring/dev.yaml
-      version: 0.1.0
