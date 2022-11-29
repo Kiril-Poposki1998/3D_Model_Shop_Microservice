@@ -1,9 +1,9 @@
-name: Send submodule updates to parent repo
+name: Submodule update
 
 on:
-  push:
-    branches: 
-      - master
+  schedule:
+    - cron: '0 1 * * *'
+    - cron: '0 13 * * *'
 
 jobs:
   update:
