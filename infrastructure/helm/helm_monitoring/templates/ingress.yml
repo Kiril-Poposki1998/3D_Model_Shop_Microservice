@@ -35,3 +35,13 @@ spec:
             name: prometheus
             port:
               number: 9090
+  - host: "jaeger.cluster"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: tracing
+            port:
+              number: 16686

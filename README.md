@@ -89,6 +89,7 @@ Add these to your C:\Windows\System32\drivers\etc\hosts file:
 127.0.0.1 grafana.cluster
 127.0.0.1 kiali.cluster
 127.0.0.1 prometheus.cluster
+127.0.0.1 jaeger.cluster
 ```
 ## Deleting cluster
 ```
