@@ -16,3 +16,6 @@ service:
   backend:
     name: polybase-be
     port: 8080
+
+env:
+  VUE_APP_BACKEND_SERVICE_URL: "http://localhost/api/"

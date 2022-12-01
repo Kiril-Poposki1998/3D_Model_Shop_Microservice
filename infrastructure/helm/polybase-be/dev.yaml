@@ -8,3 +8,14 @@ image:
   name: localhost:5000/polybase-be
   port: 8080
   version: latest
+
+env:
+  DATABASE_URL: postgres://postgres:password@postgresql.3d-model-shop.svc.cluster.local
+  URL: http://localhost/
+  APP_ENV: dev
+  APP_SECRET: a758e8e34f40b80125567fcd03473e0a
+  JWT_SECRET_KEY: "%kernel.project_dir%/config/jwt/private.pem"
+  JWT_PUBLIC_KEY: "%kernel.project_dir%/config/jwt/public.pem"
+  JWT_PASSPHRASE: testpass
+  CORS_ALLOW_ORIGIN: "^http"
+  

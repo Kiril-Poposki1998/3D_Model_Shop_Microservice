@@ -21,5 +21,7 @@ spec:
         ports:
         - containerPort: {{ .Values.image.port }}
         env:
-          - name: VUE_APP_BACKEND_SERVICE_URL
-            value: "http://localhost/api/"
+        {{ range $k, $v := .Values.env }}
+        - name: {{ $k }}
+          value: "{{ $v }}"
+        {{ end }}

@@ -20,19 +20,7 @@ spec:
         ports:
         - containerPort: {{ .Values.image.port }}
         env:
-          - name: DATABASE_URL
-            value: "postgres://postgres:password@postgresql.3d-model-shop.svc.cluster.local"
-          - name: URL
-            value: "http://localhost/"
-          - name: APP_ENV
-            value: "dev"
-          - name: APP_SECRET
-            value: "a758e8e34f40b80125567fcd03473e0a"
-          - name: JWT_SECRET_KEY
-            value: "%kernel.project_dir%/config/jwt/private.pem"
-          - name: JWT_PUBLIC_KEY
-            value: "%kernel.project_dir%/config/jwt/public.pem"
-          - name: JWT_PASSPHRASE
-            value: "testpass"
-          - name: CORS_ALLOW_ORIGIN
-            value: "^http"
+        {{ range $k, $v := .Values.env }}
+        - name: {{ $k }}
+          value: "{{ $v }}"
+        {{ end }}
