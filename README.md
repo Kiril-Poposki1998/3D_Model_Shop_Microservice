@@ -44,21 +44,16 @@ git submodule update --init --recursive --remote
 ## Install istio service mesh and add ingress controller
 Install istio with the following commands:
 ```
-docker exec -it 3d-model-shop-control-plane bash
-curl -L https://istio.io/downloadIstio | sh -
-cd istio-1.16.0
-export PATH=$PWD/bin:$PATH
-istioctl install --set profile=demo -y
-exit
+docker exec 3d-model-shop-control-plane mkdir /scripts
+docker cp .\infrastructure\scripts\install_istio.sh 3d-model-shop-control-plane:/scripts/install_istio.sh
+docker exec -i 3d-model-shop-control-plane /scripts/install_istio.sh
 ```
 Install the nginx ingress controller:
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
-docker exec -it 3d-model-shop-control-plane bash
-kubectl -n ingress-nginx get deploy ingress-nginx-controller -o yaml | /istio-1.16.0/bin/istioctl kube-inject -f - | kubectl apply -f -
-kubectl delete po --all -n ingress-nginx
-exit
+docker cp .\infrastructure\scripts\inject_envoy_ingress.sh 3d-model-shop-control-plane:/scripts/inject_envoy_ingress.sh
+docker exec -i 3d-model-shop-control-plane /scripts/inject_envoy_ingress.sh
 ```
 ## Deploy the microservice to Kubernetes
 ```
@@ -82,13 +77,8 @@ psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 ## Add monitoring (Optional, recommended for DevOps or analysis)
 Add the addons for monitoring 
 ```
-docker exec -it 3d-model-shop-control-plane bash
-cd istio-1.16.0
-export PATH=$PWD/bin:$PATH
-kubectl apply -f samples/addons
-cd /
-rm -rf istio-1.16.0
-exit
+docker cp .\infrastructure\scripts\install_addons_delete_istio_folder.sh 3d-model-shop-control-plane:/scripts/install_addons_delete_istio_folder.sh
+docker exec -i 3d-model-shop-control-plane /scripts/install_addons_delete_istio_folder.sh
 ```
 Install the monitoring ingress
 ```
