@@ -41,13 +41,28 @@ git submodule update
 ```
 git submodule update --init --recursive --remote
 ```
-## Deploy ingress controller
+## Install istio service mesh and add ingress controller
+Install istio with the following commands:
+```
+docker exec -it 3d-model-shop-control-plane bash
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.16.0
+export PATH=$PWD/bin:$PATH
+istioctl install --set profile=demo -y
+exit
+```
+Install the nginx ingress controller:
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=90s
+kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
+docker exec -it 3d-model-shop-control-plane bash
+kubectl -n ingress-nginx get deploy ingress-nginx-controller -o yaml | /istio-1.16.0/bin/istioctl kube-inject -f - | kubectl apply -f -
+kubectl delete po --all -n ingress-nginx
+exit
 ```
 ## Deploy the microservice to Kubernetes
 ```
+kubectl label namespace 3d-model-shop istio-injection=enabled
 skaffold dev
 ```
 ## Setting up and populating the database (DO THIS ONLY ONCE)
@@ -64,31 +79,29 @@ Run the foollowing command inside the pod
 psql -U postgres -h postgresql.3d-model-shop.svc.cluster.local < /tmp/data.sql
 ```
 **NOTE: The password for the database is password**
-## Deleting cluster
-```
-kind delete cluster --name=3d-model-shop
-docker rm -f registry
-```
-## Add service mesh and monitoring (Optional, recommended for DevOps or analysis)
+## Add monitoring (Optional, recommended for DevOps or analysis)
+Add the addons for monitoring 
 ```
 docker exec -it 3d-model-shop-control-plane bash
-curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.16.0
 export PATH=$PWD/bin:$PATH
-istioctl install --set profile=demo -y
 kubectl apply -f samples/addons
 cd /
 rm -rf istio-1.16.0
 exit
 ```
+Install the monitoring ingress
 ```
 helm install monitoring-ingress .\infrastructure\helm\helm_monitoring\
-kubectl label namespace 3d-model-shop istio-injection=enabled
-kubectl delete po --all
 ```
 Add these to your C:\Windows\System32\drivers\etc\hosts file:
 ```
 127.0.0.1 grafana.cluster
 127.0.0.1 kiali.cluster
 127.0.0.1 prometheus.cluster
+```
+## Deleting cluster
+```
+kind delete cluster --name=3d-model-shop
+docker rm -f registry
 ```
