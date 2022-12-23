@@ -30,3 +30,8 @@ deploy:
       valuesFiles:
       - infrastructure/helm/postgresql/dev.yaml
       version: 0.1.0
+    - name: minio
+      chartPath: infrastructure/helm/minio
+      valuesFiles:
+      - infrastructure/helm/minio/dev.yaml
+      version: 0.1.0
